@@ -1,0 +1,216 @@
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+    <style>
+      body{
+        font-family: 'Patrick Hand', cursive;
+        
+        background: rgb(238,174,202);
+        background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+      }
+      h1{
+        font-size:50px;
+        text-align: center;
+        color:rgba(8, 156, 156, 0.534);
+      }
+      h2{
+        font-size:30px;
+        text-align: left;
+        color:hsl(0, 0%, 100%);
+      }
+      .content{
+        padding-left:10%;
+        padding-right:10%;
+        font-size:30px;
+        color:blueviolet;
+      }
+      .search{
+        padding-left:5%;
+        color:blueviolet;
+        font-size:25px;
+      }
+      hr{
+        width: 80%;
+      }
+      #selector-fecha-limite-inicial, #selector-fecha-limite-final, #selector-fecha-limite{
+        font-family: 'Patrick Hand', cursive;
+        border-radius: 10%;
+        width:12%;
+        height: 30px;
+      }
+      button, .button, select{
+        font-family: 'Patrick Hand', cursive;
+        border-radius: 10%;
+        font-size: 15px;
+        width:12%;
+        height: 30px;
+      }
+      #tarea, #descripcion, #selector-categoria, #filtro-text, #etiquetas{
+        height: 30px;
+        margin-right: 20px;
+      }
+      
+      .button{
+        background-color: #4158D0;
+        background: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+        color:hsl(0, 0%, 100%);
+        font-size: 25px;
+        width:20%;
+        height: 40px;
+        right: 50%;
+        margin-left: 30%;
+
+      }
+      #boton-buscar, #boton-filtrar-fecha,.btn-descripcion {
+        background: rgb(177,253,255);
+        background: radial-gradient(circle, rgba(177,253,255,1) 0%, rgba(255,193,206,1) 100%);
+      }
+      dialog{
+        border:10px;
+        box-sizing:auto ;
+        width:50%;
+      }
+      .btn-descripcion{
+       border-left:10px;
+       
+      }
+      .close{
+        left: 50%;
+      }
+      .filtro{
+        display: none;
+        margin-left: 35%;
+      }
+      #boton-buscar-etiquetaTerminada,#filtroTerminado-text{
+        display: none;
+      }
+      #label-selector-filtro{
+        margin-left: 2%;
+      }
+      label {
+        width:135px;
+        display: inline-block;
+      }
+      
+      .checkbox-terminada:disabled{       
+        box-shadow: 0 0 0 3px hotpink;       
+      }
+      .checkbox-terminada:checked{
+        box-shadow: 0 0 0 3px hotpink;
+      }
+      .etiquetas{
+        border: solid;
+        padding:5px;
+        margin: 1%;
+      }
+      li{
+        margin: 5%;
+      }
+      #terminadas li{
+        margin: 0%;
+      }
+      .fecha{
+        width: auto;
+      }
+      .respuesta {
+        float: left;
+        text-align: left;
+        margin-right: 5%;
+        display: inline;
+        width: 49%;
+      }
+      #terminadas{
+        float: right;
+        text-align: left;
+        margin-right: 25%;
+        margin-top: 1%;
+        display: inline;
+      }
+      ul{
+        margin:0%;
+        padding: 0%;
+
+      }
+    </style>
+  </head>
+  <body>
+    <h1>BIENVENIDO A SU GESTOR DE TAREAS</h1>
+    <div class="content">
+      <h2>Ingrese la información de su tarea</h2>
+    <form id="agregarTareas-form">
+      <label for="tarea">Título</label>
+      <input maxlength="30" type="text" id="tarea"> 
+      <label for="categoria">Categoría</label>
+      <select id="selector-categoria">
+        <option value="Sin categoria">Sin categoría</option>
+        <option value="Personal">Personal</option>
+        <option value="Trabajo">Trabajo</option>
+        <option value="Estudio">Estudio</option>
+      </select>      
+      <label for="etiquetas">Etiqueta(s)</label>
+      <input type="text" id ="etiquetas"><br><br>
+      <label for="descripcion">Descripción</label>
+      <input type="text" id ="descripcion">
+      <label for="descripcion">Fecha Límite</label>
+      <input min="min='1999-01-01T00:00'" type="datetime-local" id="selector-fecha-limite"><br><br>
+      <input type="submit" value="Crear Tarea" class="button"/>       
+    </form>
+    </div>
+    <hr>
+    <div class ="search">
+      <h2>Parámetros para buscar su tarea</h2>
+      <input  maxlength="30" type="text" id="filtro-text" />
+      <button id="boton-buscar">Buscar</button>
+      <label id = "label-selector-filtro" for="selector-filtro">Selecciona tipo de filtro: </label>
+      <select id="selector-filtro">
+        <option value="Ninguno">Ninguno</option>  
+        <option value="Fecha">Fecha</option>
+        <option value="Categoria">Categoria</option>    
+      </select>      
+      <label for="selector-tipo-estadisticas">Estadisticas segun:</label>
+      <select id="selector-tipo-estadisticas">
+        <option value="Ninguno">Ninguno</option>
+        <option value="Categorias">Categorias</option>
+        <option value="Etiqueta">Etiqueta</option>
+      </select>
+      <input  maxlength="30" type="text" id="filtroTerminado-text" />
+      <button id="boton-buscar-etiquetaTerminada">Buscar</button>
+      <select id="selector-categoria-busqueda" class="filtro">
+        <option value="Sin categoria">Sin categoría</option>
+        <option value="Personal">Personal</option>
+        <option value="Trabajo">Trabajo</option>
+        <option value="Estudio">Estudio</option>         
+      </select>
+      <div id="filtro-fecha" class="filtro">
+        <label class ="fecha" for="selector-fecha-limite-inicial">Desde</label>
+        <input min="min='1999-01-01T00:00'" type="date" id="selector-fecha-limite-inicial">
+        <label  class ="fecha" for="selector-fecha-limite-final">Hasta</label>
+        <input min="min='1999-01-01T00:00'" type="date" id="selector-fecha-limite-final">
+        <button id="boton-filtrar-fecha">Filtrar por fecha</button>
+    </div>
+    <div  id="terminadas"></div>
+    <div id="filtro-estado">
+      <p>Seleciona el estado: </p>
+      <form>
+        <label class="radio-inline">
+          <input id="estado-todas" type="radio" value="todas" name="estado" checked>Todas
+        </label>
+        <label  class="radio-inline">
+          <input id="estado-pendiente" type="radio" value="pendiente" name="estado">Pendiente
+        </label>
+        <label  class="radio-inline">
+          <input id="estado-terminada" type="radio" value="terminada" name="estado">Terminadas
+        </label>
+      </form>
+    </div>
+    <h4>Tareas</h4>
+    <div class = respuesta><ul id="lista-tareas"></ul></div>    
+    <dialog  id="dialogo-descripcion"></dialog>
+    <script type="module" src="./src/LogicaInterfaz/index.js"></script>
+    <script type="module" src="./src/LogicaInterfaz/filtros.js"></script>
+    </div>
+  </body>
+</html>
+
